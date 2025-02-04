@@ -13,10 +13,7 @@ const BookbidListPage = () => {
   const [editForm, setEditForm] = useState({ 
     numbid: "",
     date: "",
-    frombid: "",
-    tobid: "",
     topic: "",
-    plan: "",
     note: "",
   });
 
@@ -75,10 +72,7 @@ const BookbidListPage = () => {
     setEditForm({ 
       numbid: post.numbid,
       date: post.date,
-      frombid: post.frombid,
-      tobid: post.tobid,
       topic: post.topic,
-      plan: post.plan,
       note: post.note,
     });
   };
@@ -89,10 +83,7 @@ const BookbidListPage = () => {
     setEditForm({ 
       numbid: "",
       date: "",
-      frombid: "",
-      tobid: "",
       topic: "",
-      plan: "",
       note: ""
     });
   };
@@ -108,14 +99,11 @@ const BookbidListPage = () => {
   const handleUpdate = async (id: number) => {
     try {
       const { error } = await supabase
-        .from("posts")
+        .from("bookbidding")
         .update({ 
           numbid: editForm.numbid,
           date: editForm.date,
-          frombid: editForm.frombid,
-          tobid: editForm.tobid,
           topic: editForm.topic,
-          plan: editForm.plan,
           note: editForm.note,
         })
         .eq("id", id);
@@ -150,8 +138,9 @@ const BookbidListPage = () => {
           <thead>
             <tr>
               <th className="border border-gray-300 px-4 py-2">ที่คำสั่ง</th>
-              <th className="border border-gray-300 px-4 py-2">จาก</th>
-              <th className="border border-gray-300 px-4 py-2">Actions</th>
+              <th className="border border-gray-300 px-4 py-2">วันที่</th>
+              <th className="border border-gray-300 px-4 py-2">เรื่อง</th>
+              {/* <th className="border border-gray-300 px-4 py-2">Actions</th> */}
             </tr>
           </thead>
           <tbody>
@@ -167,22 +156,34 @@ const BookbidListPage = () => {
                       className="w-full p-2 border border-gray-300 rounded"
                     />
                   ) : (
-                    post.title
+                    post.numbid
                   )}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
                   {editingPostId === post.id ? (
                     <textarea
-                      name="frombid"
-                      value={editForm.frombid}
+                      name="date"
+                      value={editForm.date}
                       onChange={handleFormChange}
                       className="w-full p-2 border border-gray-300 rounded"
                     />
                   ) : (
-                    post.description
+                    post.date
                   )}
                 </td>
-                <td className="border border-gray-300 px-4 py-2 text-center">
+                <td className="border border-gray-300 px-4 py-2">
+                  {editingPostId === post.id ? (
+                    <textarea
+                      name="topic"
+                      value={editForm.topic}
+                      onChange={handleFormChange}
+                      className="w-full p-2 border border-gray-300 rounded"
+                    />
+                  ) : (
+                    post.topic
+                  )}
+                </td>
+                {/* <td className="border border-gray-300 px-4 py-2 text-center">
                   {editingPostId === post.id ? (
                     <div className="flex gap-2">
                       <button
@@ -214,7 +215,7 @@ const BookbidListPage = () => {
                   >
                     Delete
                   </button>
-                </td>
+                </td> */}
                 <td>
                   <Link href={`/protected/bookbidding/${post.id}`} className="px-4 py-2 bg-gray-600 text-white rounded">View</Link>
                 </td>
