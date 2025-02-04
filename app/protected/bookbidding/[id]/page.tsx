@@ -17,10 +17,7 @@ const BookBidDetailsPage = () => {
   const [editForm, setEditForm] = useState({
     numbid: "",
     date: "",
-    frombid: "",
-    tobid: "",
     topic: "",
-    plan: "",
     note: "",
   });
 
@@ -72,10 +69,7 @@ const BookBidDetailsPage = () => {
     setEditForm({
       numbid: post.numbid,
       date: post.date,
-      frombid: post.frombid,
-      tobid: post.tobid,
       topic: post.topic,
-      plan: post.plan,
       note: post.note,
     });
   };
@@ -85,10 +79,7 @@ const BookBidDetailsPage = () => {
     setEditForm({
       numbid: "",
       date: "",
-      frombid: "",
-      tobid: "",
       topic: "",
-      plan: "",
       note: "",
     });
   };
@@ -103,14 +94,11 @@ const BookBidDetailsPage = () => {
   const handleUpdate = async () => {
     try {
       const { error } = await supabase
-        .from("bookreceive") // Correct table name
+        .from("bookbidding") // Correct table name
         .update({
           numbid: editForm.numbid,
           date: editForm.date,
-          frombid: editForm.frombid,
-          tobid: editForm.tobid,
           topic: editForm.topic,
-          plan: editForm.plan,
           note: editForm.note,
         })
         .eq("id", post.id);
@@ -142,7 +130,7 @@ const BookBidDetailsPage = () => {
           <h1 className="text-2xl font-bold mb-4">Edit</h1>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
-              Title
+              ที่คำสั่ง
             </label>
             <input
               type="text"
@@ -168,33 +156,7 @@ const BookBidDetailsPage = () => {
 
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
-            From
-            </label>
-            <input
-            type="text"
-              name="frombid"
-              value={editForm.frombid}
-              onChange={handleFormChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-            To
-            </label>
-            <input
-            type="text"
-              name="tobid"
-              value={editForm.tobid}
-              onChange={handleFormChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-            Topic
+            เรื่อง
             </label>
             <input
             type="text"
@@ -207,20 +169,7 @@ const BookBidDetailsPage = () => {
 
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
-            Plan
-            </label>
-            <input
-            type="text"
-              name="plan"
-              value={editForm.plan}
-              onChange={handleFormChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-            Note
+            หมายเหตุ
             </label>
             <input
             type="text"
