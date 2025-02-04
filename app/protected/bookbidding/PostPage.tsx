@@ -10,10 +10,10 @@ const BookBidPage = () => {
   const router = useRouter(); // For navigation
   const [numbid, setNumbid] = useState("");
   const [date, setDate] = useState("");
-  const [frombid, setFrombid] = useState("");
+  // const [frombid, setFrombid] = useState("");
   // const [tobid, setTobid] = useState("");
   const [topic, setTopic] = useState("");
-  const [plan, setPlan] = useState("");
+  // const [plan, setPlan] = useState("");
   const [note, setNote] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -74,10 +74,10 @@ const BookBidPage = () => {
         users_id: user.id,
         numbid, // ที่คำสั่ง
         date, // วันที่
-        frombid,
+        // frombid,
         // tobid,
         topic,
-        plan,
+        // plan,
         note,
       });
 
@@ -92,10 +92,10 @@ const BookBidPage = () => {
         (parseInt(prev, 10) + 1).toString().padStart(4, "0")
       );
       setDate("");
-      setFrombid("");
+      // setFrombid("");
       // setTobid("");
       setTopic("");
-      setPlan("");
+      // setPlan("");
       setNote("");
     } catch (err: any) {
       setError(err.message || "An error occurred while submitting the post.");
@@ -128,8 +128,9 @@ const BookBidPage = () => {
       )}
 
       <form onSubmit={handleSubmit}>
+
         <div className="mb-4">
-          <label className="block text-sm font-medium">Num Receive</label>
+          <label className="block text-sm font-medium">ที่คำสั่ง</label>
           <input
             type="text"
             value={numbid}
@@ -139,8 +140,9 @@ const BookBidPage = () => {
             readOnly
           />
         </div>
+
         <div className="mb-4">
-          <label className="block text-sm font-medium">Date</label>
+          <label className="block text-sm font-medium">วันที่</label>
           <input
             type="date"
             value={date}
@@ -149,7 +151,7 @@ const BookBidPage = () => {
             required
           />
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="block text-sm font-medium">From Receive</label>
           <input
             type="text"
@@ -158,7 +160,7 @@ const BookBidPage = () => {
             className="mt-1 p-2 border rounded w-full"
             required
           />
-        </div>
+        </div> */}
 
         {/* <div className="mb-4">
           <label className="block text-sm font-medium">To Receive</label>
@@ -172,7 +174,7 @@ const BookBidPage = () => {
         </div> */}
 
         <div className="mb-4">
-          <label className="block text-sm font-medium">Topic</label>
+          <label className="block text-sm font-medium">เรื่อง</label>
           <input
             type="text"
             value={topic}
@@ -181,7 +183,8 @@ const BookBidPage = () => {
             required
           />
         </div>
-        <div className="mb-4">
+
+        {/* <div className="mb-4">
           <label className="block text-sm font-medium">Plan</label>
           <input
             type="text"
@@ -190,9 +193,9 @@ const BookBidPage = () => {
             className="mt-1 p-2 border rounded w-full"
             required
           />
-        </div>
+        </div> */}
         <div className="mb-4">
-          <label className="block text-sm font-medium">Note</label>
+          <label className="block text-sm font-medium">หมายเหตุ</label>
           <textarea
             value={note}
             onChange={(e) => setNote(e.target.value)}
